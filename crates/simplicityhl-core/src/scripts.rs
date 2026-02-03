@@ -18,7 +18,20 @@ use crate::error::ProgramError;
 /// Returns error if the program fails to compile.
 pub fn load_program(source: &str, arguments: Arguments) -> Result<CompiledProgram, ProgramError> {
     let compiled =
-        CompiledProgram::new(source, arguments, true).map_err(ProgramError::Compilation)?;
+        CompiledProgram::new(source, arguments.clone(), true).map_err(ProgramError::Compilation)?;
+
+    let arguments_json = serde_json::to_string(&arguments)
+        .map_err(|_| ProgramError::Compilation("serde json failed".to_string()))?;
+    let arguments_pest: simplicityhl_pest::Arguments = serde_json::from_str(&arguments_json)
+        .map_err(|_| ProgramError::Compilation("serde json failed".to_string()))?;
+    let compiled_pest = simplicityhl_pest::CompiledProgram::new(source, arguments_pest, true)
+        .map_err(ProgramError::Compilation)?;
+
+    assert_eq!(
+        compiled.commit().to_vec_without_witness(),
+        compiled_pest.commit().to_vec_without_witness()
+    );
+
     Ok(compiled)
 }
 

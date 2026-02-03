@@ -33,4 +33,4 @@ contracts = { path = "../contracts" }
 
 simplicityhl = { workspace = true }
 
-simplicityhl-core = { workspace = true }
+simplicityhl-core = { path = "../simplicityhl-core", features = ["encoding"]}

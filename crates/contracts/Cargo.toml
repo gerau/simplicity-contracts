@@ -34,7 +34,7 @@ hex = { workspace = true }
 
 simplicityhl = { workspace = true }
 
-simplicityhl-core = { workspace = true }
+simplicityhl-core = { path = "../simplicityhl-core", features = ["encoding"] }
 
 [dev-dependencies]
 anyhow = "1"

@@ -28,5 +28,9 @@ sha2 = { workspace = true }
 hex = { workspace = true }
 
 simplicityhl = { workspace = true }
+simplicityhl-pest = {workspace = true}
+
+serde =  { workspace = true }
+serde_json = { workspace = true}
 
 minreq = { workspace = true }

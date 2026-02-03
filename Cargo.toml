@@ -20,8 +20,14 @@ tracing = { version = "0.1.41" }
 
 minreq = { version = "2.14.1", features = ["https", "json-using-serde"]}
 
-simplicityhl = { version = "0.4.0" }
+simplicityhl-pest = { package = "simplicityhl", version = "0.4.0" }
 simplicityhl-core = { version = "0.4.2", features = ["encoding"] }
+
+simplicityhl = {package = "simplicityhl", git = "https://github.com/distributed-lab/SimplicityHL", branch = "simc/chumsky-migration"}
+
+serde = {version = "1.0.228"}
+serde_json = {version = "1.0.149"}
+
 
 [patch.crates-io]
 simplicity-sys = { git = "https://github.com/BlockstreamResearch/rust-simplicity", tag = "simplicity-sys-0.6.1" }
